@@ -1,0 +1,7 @@
+.mainContainer {
+  height: calc(100% - 120px);
+  display: grid;
+  overflow-y: auto;
+  padding: 40px 0;
+  width: 100%;
+}

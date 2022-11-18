@@ -1,0 +1,46 @@
+@import "styles/var";
+
+.wrapper {
+  .item {
+    text-align: center;
+    min-height: 216px;
+
+    @include lg {
+      width: 50%;
+    }
+  }
+
+  @include lg {
+    display: flex;
+  }
+}
+
+.embedDescription {
+  margin-top: 30px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.link {
+  margin-top: 16px;
+  display: block;
+}
+
+.imageThumb {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: all 0.4s;
+
+  &:hover {
+    scale: 1.01;
+  }
+}
+
+.youtubeLogo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

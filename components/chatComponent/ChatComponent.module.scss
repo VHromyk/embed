@@ -1,0 +1,120 @@
+@import 'styles/var';
+
+.chatWrapper {
+  margin-top: 40px;
+}
+
+.listWrapper {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @include lg {
+    gap: 0;
+    margin-top: 0;
+  }
+}
+
+.item {
+  font-size: 16px;
+  line-height: 1.5;
+  display: grid;
+  grid-template-columns: 68% auto 10%;
+  grid-template-rows: 1fr 1fr 1fr;
+  border: 1px solid #C6C9F8;
+
+  grid-template-areas:
+          'avatar status messageIcon'
+          'avatar age age'
+          'name city city';
+
+  @include md {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+
+    grid-template-areas:
+          'ellipseAvatar name name'
+          'ellipseAvatar status messageIcon'
+          'age status messageIcon'
+          'city city city';
+  }
+
+  @include lg {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 'ellipseAvatar name status city age messageIcon';
+    border: none;
+  }
+}
+
+.name, .status, .messageIcon, .age, .city, .ellipseAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.5px solid #C6C9F8;
+  padding: 10px 0;
+}
+
+.name {
+  grid-area: name;
+}
+
+.status {
+  grid-area: status;
+}
+
+.messageIcon {
+  grid-area: messageIcon;
+}
+
+.avatar {
+  grid-area: avatar;
+  width: 100%;
+
+  @include md {
+    display: none;
+  }
+}
+
+.age {
+  grid-area: age;
+}
+
+.city {
+  grid-area: city;
+}
+
+.photo {
+  grid-area: photo;
+}
+
+.ellipseAvatar {
+  grid-area: ellipseAvatar;
+  display: none;
+
+  @include md {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.headTable {
+  display: none;
+  border: 0.5px solid #C6C9F8;
+
+  @include lg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  li {
+    width: calc(100% / 6);
+    text-align: center;
+    border: 0.5px solid #C6C9F8;
+    padding: 8px 0;
+  }
+}
