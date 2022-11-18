@@ -44,9 +44,10 @@ export function Modal({ children, onClose }: Props) {
           }
           .modal {
             position: absolute;
-            min-width: 100%;
-            padding-left: 20px;
-            padding-right: 20px;
+            min-width: 80%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
           }
         `}
       </style>
