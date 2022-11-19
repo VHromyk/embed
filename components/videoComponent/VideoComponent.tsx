@@ -3,8 +3,13 @@ import styles from "./VideoComponent.module.scss";
 import { Modal } from "../modal/Modal";
 import Image from "next/image";
 import { YoutubeEmbed } from "../youtubeEmbed/youtubeEmbed";
+import { IVideo } from "../../pages";
 
-export function VideoComponent() {
+type Props = {
+  videoData: IVideo;
+};
+
+export const VideoComponent = ({ videoData }: Props) => {
   const [showModal, setShowModal] = useState(false);
 
   const showModalHandler = () => {
@@ -15,20 +20,15 @@ export function VideoComponent() {
     setShowModal(false);
   };
 
+  const { link, text, embed } = videoData;
   return (
     <>
       <div className={styles.wrapper}>
         <div className={styles.item}>
-          <h3>embed RK1K2bCg4J8</h3>
-          <p className={styles.embedDescription}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut culpa
-            deserunt dignissimos enim?
-          </p>
-          <a
-            href="https://www.youtube.com/watch?v=RK1K2bCg4J8&t=2414s"
-            className={styles.link}
-          >
-            https://www.youtube.com/watch?v=RK1K2bCg4J8&t=2414s
+          <h3>{`embed ${embed}`}</h3>
+          <p className={styles.embedDescription}>{text}</p>
+          <a href={link} className={link}>
+            {link}
           </a>
         </div>
         <div className={styles.imageThumb} onClick={showModalHandler}>
@@ -50,9 +50,9 @@ export function VideoComponent() {
       </div>
       {showModal && (
         <Modal onClose={closeModalHandler}>
-          <YoutubeEmbed embed="RK1K2bCg4J8" />
+          <YoutubeEmbed embed={embed} />
         </Modal>
       )}
     </>
   );
-}
+};

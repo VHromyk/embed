@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import styles from "./ChatComponent.module.scss";
 import Image from "next/image";
-import { IPerson } from "./data/data";
 import Avatar from "./img/person.jpg";
 import EllipseAvatar from "./img/ellipse_person.jpg";
 import { useWindowResize } from "../../hooks/useWindowResize";
+import { IUser } from "../../pages";
 
 type Props = {
-  personsList: IPerson[];
+  users: IUser[];
 };
 
-export function ChatComponent({ personsList }: Props) {
+export function ChatComponent({ users }: Props) {
   const [isMobile, setIsMobile] = useState(true);
   const size = useWindowResize();
 
@@ -22,10 +22,10 @@ export function ChatComponent({ personsList }: Props) {
     }
   }, [size]);
 
-  const personStatus = (status: IPerson) => {
+  const personStatus = (status: IUser) => {
     return (
       <Image
-        src={status.isOnline ? "/chat_online.svg" : "/chat_offline.svg"}
+        src={status.online ? "/chat_online.svg" : "/chat_offline.svg"}
         alt="chat_icon"
         width="61"
         height="37"
@@ -51,12 +51,12 @@ export function ChatComponent({ personsList }: Props) {
         ))}
       </ul>
       <ul className={styles.listWrapper}>
-        {personsList.map((person) => {
+        {users.map((person, i) => {
           return (
-            <li key={person.id} className={styles.item}>
+            <li key={i} className={styles.item}>
               <div className={styles.name}>{person.name}</div>
               <div className={styles.status}>
-                {person.isOnline ? "online" : "offline"}
+                {person.online ? "online" : "offline"}
               </div>
               <div className={styles.messageIcon}>
                 {isMobile ? (
@@ -74,8 +74,8 @@ export function ChatComponent({ personsList }: Props) {
               <div className={styles.ellipseAvatar}>
                 <Image src={EllipseAvatar} alt="avatar" />
               </div>
-              <div className={styles.age}>{person.age} year</div>
-              <div className={styles.city}>{person.city}</div>
+              <div className={styles.age}>{person.age} years</div>
+              <div className={styles.city}>{person.registration}</div>
             </li>
           );
         })}
